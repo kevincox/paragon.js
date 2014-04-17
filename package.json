@@ -1,0 +1,34 @@
+{
+	"name": "Paragon",
+	"version": "1.0.0",
+	"description": "A simple model.",
+	"main": "Paragon.js",
+	"homepage": "https://github.com/kevincox/paragon.js",
+	"bugs": {
+		"url": "https://github.com/kevincox/paragon.js/issues",
+		"email": "kevincox@kevincox.ca"
+	},
+	"directories": {
+		"test": "test"
+	},
+	"scripts": {
+		"test": "mocha"
+	},
+	"dependencies": {
+		"signals": "1"
+	},
+	"devDependencies": {
+		"mocha": "*",
+		"chai": "*"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/kevincox/paragon.js.git"
+	},
+	"keywords": [
+		"model"
+	],
+	"author": "Kevin Cox",
+	"license": "zlib",
+	"readmeFilename": "README.md"
+}

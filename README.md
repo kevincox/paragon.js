@@ -126,10 +126,9 @@ also run them in a browser by opening `test/test.html`.
 To help increase the odds of caching I am recommending the following URLs for
 the script they are all hosted on CDNs for quick close access.  If you are not
 combining Paragon into your scripts it is highly recommended that you use the
-links below.
+links below.  The links are HTTPS but HTTP is also available.
 
-- [paragon-1.0.0.js](http://yourjavascript.com/9117641144/paragon-min.js)
-  HTTP only, hosted on CloudFlare.
+- [paragon-1.0.1.js](https://kevincox-cdn.appspot.com/Paragon-1.0.1.min)
 
 ## Questions?
 

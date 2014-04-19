@@ -67,7 +67,7 @@ describe('Paragon', function(){
 	it("should call callbacks", function(){
 		var called = [0, 0, 0, 0];
 		var Klass = Paragon.create({
-			foo: {value:false},
+			foo: false,
 			bar: {
 				get: function(){},
 				set: function(){},
@@ -144,6 +144,20 @@ describe('Paragon', function(){
 		expect(o.first).to.equal("Jane");
 		expect(o.last).to.equal("Doe");
 		expect(o.full).to.equal("Jane Doe");
+	});
+	it("should use non-object signatures as values", function(){
+		var Klass = Paragon.create({
+			foo: 1,
+			bar: undefined,
+			baz: false,
+			bop: [], // An object.
+		});
+		
+		var o = new Klass;
+		expect(o.foo).to.equal(1);
+		expect(o.bar).to.equal(undefined);
+		expect(o.baz).to.equal(false);
+		expect(o.hasOwnProperty("bop")).to.equal(false);
 	});
 	it("should be class heirarchy fiendly.", function(){
 		var C1 = Paragon.create({foo:{value:5},baz:{value:2}});

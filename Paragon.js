@@ -161,6 +161,7 @@
 				};
 				
 				for (var k in spec) {
+					if (typeof spec[k] != "object") spec[k] = {value:spec[k]};
 					props[k] = mkprop(k, spec[k]);
 					emitters[k] = {};
 				}

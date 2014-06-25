@@ -201,4 +201,18 @@ describe('Paragon', function(){
 			Paragon.create({}, Array);
 		}).to.throw(TypeError);
 	});
+	it("should have unique values for instances", function(){
+		var klass = Paragon.create({prop: "foo"});
+		
+		var o1 = new klass();
+		var o2 = new klass();
+		
+		expect(o1.prop).to.equal("foo");
+		expect(o2.prop).to.equal("foo");
+		
+		o1.prop = "bar";
+		
+		expect(o1.prop).to.equal("bar");
+		expect(o2.prop).to.equal("foo");
+	});
 });

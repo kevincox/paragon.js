@@ -128,9 +128,9 @@ the script they are all hosted on CDNs for quick close access.  If you are not
 combining Paragon into your scripts it is highly recommended that you use the
 links below.  The links are HTTPS but HTTP is also available.
 
-- [paragon-1.0.1.js](https://kevincox-cdn.appspot.com/Paragon-1.0.1.min)
-- [paragon-1.1.0.js](https://kevincox-cdn.appspot.com/Paragon-1.1.0.min)
-- [paragon-1.1.1.js](https://kevincox-cdn.appspot.com/Paragon-1.1.1.min)
+- [paragon-1.0.1.js](https://kevincox-cdn.appspot.com/Paragon-1.0.1.min.js)
+- [paragon-1.1.0.js](https://kevincox-cdn.appspot.com/Paragon-1.1.0.min.js)
+- [paragon-1.1.1.js](https://kevincox-cdn.appspot.com/Paragon-1.1.1.min.js)
 
 ## Questions?
 

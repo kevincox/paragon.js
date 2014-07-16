@@ -215,4 +215,11 @@ describe('Paragon', function(){
 		expect(o1.prop).to.equal("bar");
 		expect(o2.prop).to.equal("foo");
 	});
+	it("should use set values", function(){
+		var klass = Paragon.create({prop: "foo"});
+		var o = new klass();
+		expect(o.prop).to.equal("foo");
+		o.prop = false;
+		expect(o.prop).to.equal(false);
+	});
 });

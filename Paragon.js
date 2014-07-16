@@ -65,10 +65,12 @@
 	 */
 	function mkprop(name, sig) {
 		//console.log("mkprop", name, sig);
-		var hasvalue = sig.hasOwnProperty("value");
+		var val = sig.hasOwnProperty("value");
 		var pk = "_paragonPrivate_"+name;
-		var get = sig.get || (hasvalue?function(){return this[pk]||sig.value}:undefined);
-		var set = sig.set || (hasvalue?function(nv){this[pk] = nv}:undefined);
+		var get = sig.get||(val?
+		                    function(){return this.hasOwnProperty(pk)?this[pk]:sig.value}
+		                    :undefined);
+		var set = sig.set||(val?function(nv){this[pk] = nv}:undefined);
 		
 		return {
 			get: get,

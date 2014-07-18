@@ -63,33 +63,41 @@
 	 * Creates a description using the spec in sig.  This description will be
 	 * passed to Object.defineProperty.
 	 */
-	function mkprop(name, sig) {
-		//console.log("mkprop", name, sig);
-		var val = sig.hasOwnProperty("value");
-		var pk = "_paragonPrivate_"+name;
-		var get = sig.get||(val?
-		                    function(){return this.hasOwnProperty(pk)?this[pk]:sig.value}
-		                    :undefined);
-		var set = sig.set||(val?function(nv){this[pk] = nv}:undefined);
+	function addprop(k, props, sig) {
+		//console.log("addprop", k, sig);
+		var hasval = sig.hasOwnProperty("value");
 		
-		return {
+		var pk = "_paragonPrivate_"+k;
+		var ck = k+"changed";
+		
+		var get = sig.get || (hasval? function(){return this[pk]} : undefined);
+		var set = sig.set || (hasval? function(nv){this[pk] = nv} : undefined);
+		
+		if (hasval)
+			props[pk] = {
+				value: sig["value"],
+				writable: true,
+				enumberable: false,
+			};
+		
+		props[k] = {
 			get: get,
 			set: set && function paragonmodel_set(val){
-				var prev = this[name];
+				var prev = this[k];
 				
 				// Set up a signal "session".
 				var root = !alreadychanged;
 				if (root) alreadychanged = {};
-				alreadychanged[name] = 1;
+				alreadychanged[k] = 1;
 				
 				set.call(this, val);
-				// console.log("Model changed", val, name, prev, this);
+				// console.log("Model changed", val, k, prev, this);
 				
-				this[name+"changed"].dispatch(val, name, prev, this);
+				this[ck].dispatch(val, k, prev, this);
 				
 				// If we are the root clean up.
 				if (root) {
-					this.changed.dispatch(val, name, prev, this);
+					this.changed.dispatch(val, k, prev, this);
 					alreadychanged = false;
 				}
 			},
@@ -164,7 +172,7 @@
 				
 				for (var k in spec) {
 					if (typeof spec[k] != "object") spec[k] = {value:spec[k]};
-					props[k] = mkprop(k, spec[k]);
+					addprop(k, props, spec[k]);
 					emitters[k] = {};
 				}
 				
